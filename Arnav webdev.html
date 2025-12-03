@@ -1,0 +1,283 @@
+a<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Arnav — Portfolio (Teal + Coral)</title>
+  <meta name="description" content="Arnav Sharma’s little corner of the internet — teal, coral & a whole lot of coffee-stained code."/>
+  <style>
+    :root{
+      --bg-white: #ffffff;
+      --panel: #fbfdff;
+      --teal: #0ea5a4;
+      --deep-teal: #087f7b;
+      --coral: #ff6b6b;
+      --muted: #6b7280;
+      --border: rgba(14,128,128,0.06);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter,system-ui,Arial;background:#fff;color:#0b1220}
+    body::before{
+      content:"";position:fixed;inset:0;
+      background-image:url("/mnt/data/A_digital_illustration_in_a_neon-lit_street_art_st.png");
+      background-size:cover;background-position:center;opacity:0.045;filter:blur(6px);
+      z-index:0;pointer-events:none;
+    }
+    /* ---------- TOPBAR & HAMBURGER ---------- */
+    .topbar{
+      position:sticky;top:0;z-index:6;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 20px;
+    }
+    /* desktop pill (hidden on small screens) */
+    .nav-box{
+      display:flex;gap:8px;
+      background:#fff;border:1px solid var(--border);
+      border-radius:100px;padding:6px 12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.05);
+    }
+    .nav-box a{
+      color:var(--deep-teal);text-decoration:none;
+      padding:6px 12px;border-radius:100px;font-weight:600;font-size:14px;
+      transition:.2s;
+    }
+    .nav-box a:hover{background:var(--teal);color:#fff}
+    /* hamburger (hidden on desktop) */
+    .hamburger{
+      display:none;flex-direction:column;gap:4px;
+      cursor:pointer;padding:6px;
+    }
+    .hamburger span{
+      width:24px;height:3px;background:var(--deep-teal);border-radius:2px;transition:.3s;
+    }
+    .mobile-nav{
+      position:absolute;top:56px;right:20px;background:#fff;
+      border:1px solid var(--border);border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      display:none;flex-direction:column;padding:8px 0;min-width:160px;
+    }
+    .mobile-nav a{
+      color:var(--deep-teal);text-decoration:none;padding:10px 18px;font-weight:600;font-size:14px;
+    }
+    .mobile-nav a:hover{background:var(--panel)}
+    /* show hamburger on small screens */
+    @media (max-width:768px){
+      .nav-box{display:none}
+      .hamburger{display:flex}
+    }
+    .brand{font-weight:700;color:var(--deep-teal)}
+    .wrap{
+      position:relative;z-index:2;max-width:1100px;margin:30px auto;background:#fff;padding:28px;border-radius:14px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.06);
+    }
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{
+      width:130px;height:130px;border-radius:18px;overflow:hidden;border:4px solid rgba(14,128,128,0.08);
+      box-shadow:0 12px 36px rgba(14,128,128,0.06);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    h1{font-size:30px;color:var(--deep-teal);cursor:pointer}
+    .layout{display:grid;grid-template-columns:1fr 360px;gap:26px;margin-top:24px}
+    .card{background:var(--panel);padding:18px;border-radius:12px;border:1px solid var(--border);box-shadow:0 10px 30px rgba(0,0,0,0.04)}
+    .projects{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+    .proj{padding:16px;border-radius:12px;background:#fff;border:1px solid #eee;cursor:pointer}
+    .proj h4{color:var(--teal);margin-bottom:8px}
+    .venture-list{margin-top:12px;display:flex;flex-direction:column;gap:12px}
+    .venture{padding:16px;border-radius:12px;background:#fff;border:1px solid #eee;cursor:pointer}
+    .venture h4{color:var(--coral);margin-bottom:6px}
+    .testi{margin-top:12px;display:flex;flex-direction:column;gap:12px}
+    .testi-box{padding:16px;border-radius:12px;background:#fff;border:1px solid #eee}
+    .testi-box h5{color:var(--deep-teal);margin-bottom:6px}
+    .testi-box p{font-size:14px;color:#555}
+    .pricing-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px}
+    .price-card{padding:22px;border-radius:14px;background:#fff;border:2px solid var(--border);text-align:center;transition:.3s}
+    .price-card:hover{border-color:var(--coral);transform:translateY(-4px)}
+    .price-card h4{color:var(--teal);margin-bottom:10px}
+    .price-card .price{font-size:32px;font-weight:700;color:var(--deep-teal)}
+    .price-card p{font-size:14px;color:var(--muted);margin-top:8px}
+    /* ----- BIG CTA BUTTON ----- */
+    .cta-box{text-align:center;margin:30px 0}
+    .cta-btn{
+      display:inline-block;background:linear-gradient(90deg,var(--teal),var(--coral));color:#fff;
+      padding:14px 28px;border-radius:100px;font-weight:700;font-size:16px;cursor:pointer;
+      box-shadow:0 6px 20px rgba(0,0,0,.1);transition:.3s;
+    }
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+    .skills{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+    .skill-row{display:flex;gap:12px;align-items:center}
+    .skill-bar{flex:1;height:12px;background:#eef6f5;border-radius:100px;overflow:hidden}
+    .skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--coral));transition:1s}
+    footer{text-align:center;margin-top:20px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Arnav • Web Dev</div>
+
+    <!-- DESKTOP PILL -->
+    <nav class="nav-box">
+      <a href="#about">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#ventures">Ventures</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- HAMBURGER (mobile only) -->
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#about" onclick="toggleMobileNav()">Home</a>
+      <a href="#projects" onclick="toggleMobileNav()">Projects</a>
+      <a href="#ventures" onclick="toggleMobileNav()">Ventures</a>
+      <a href="#testimonials" onclick="toggleMobileNav()">Testimonials</a>
+      <a href="#pricing" onclick="toggleMobileNav()">Pricing</a>
+      <a href="#skills" onclick="toggleMobileNav()">Skills</a>
+      <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+    </nav>
+  </div>
+
+  <main class="wrap">
+    <header>
+      <div class="avatar">
+        <img src="https://image.pollinations.ai/prompt/flat%20vector%20avatar%20of%20a%20young%20male%20web%20developer%20named%20Arnav%2C%20half-body%2C%20slight%20smile%2C%20teal%20hoodie%20with%20coral%20accent%20details%2C%20transparent%20background%2C%20minimalist%2C%20no%20text%2C%201024x1024%20png?width=1024&height=1024&nologo=true&transparent=true" alt="Arnav avatar">
+      </div>
+      <div>
+        <h1 onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Arnav Sharma — Web Developer</h1>
+        <p style="color:#6b7280;margin-top:6px">Teal + Coral • Clean • Professional</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" id="about">
+        <h3>About Me</h3>
+        <p style="color:#6b7280;margin-top:8px;line-height:1.7">Hey, I’m Arnav.</p>
+        <p style="color:#6b7280;margin-top:12px;line-height:1.7">
+          I build websites the same way I make instant noodles: fast, no unnecessary toppings, but somehow still
+          tasty. Students need a place to sell old textbooks? Cool, let’s spin up a marketplace. School club
+          drowning in Excel sheets? Hello, custom dashboard. I like tiny, real problems because the solutions
+          fit in my head (and my 8-GB RAM laptop).
+        </p>
+        <p style="color:#6b7280;margin-top:12px;line-height:1.7">
+          When I’m not writing code, you’ll catch me hunting for the perfect Momo stall, re-watching MCU
+          easter-egg videos, or trying to convince my friends that keyboard clicks <strong>are</strong>
+          background music. If you’ve got a small idea that keeps you awake, ping me — let’s keep each other
+          awake and build it.
+        </p>
+      </section>
+
+      <section class="card" id="projects" style="margin-top:16px">
+        <h3>Projects</h3>
+        <div class="projects">
+          <div class="proj" onclick="alert('Demo coming soon!')">
+            <h4>Personal Landing Page</h4>
+            <p>A clean one-page portfolio template.</p>
+          </div>
+          <div class="proj" onclick="alert('Demo coming soon!')">
+            <h4>Business Website</h4>
+            <p>For tutors, gyms, shops, and small businesses.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="ventures" style="margin-top:16px">
+        <h3>Entrepreneurial Activities</h3>
+        <div class="venture-list">
+          <div class="venture" onclick="alert('Library repo coming soon!')">
+            <h4>Library Management Protocol</h4>
+            <p>Web system for lightning-fast book check-ins / check-outs.</p>
+          </div>
+          <div class="venture" onclick="alert('Marketplace demo in progress!')">
+            <h4>Student Services Exchange</h4>
+            <p>Peer-to-peer marketplace to buy, sell & trade student services.</p>
+          </div>
+          <div class="venture" onclick="alert('Budget tracker beta soon!')">
+            <h4>Personal Budget Tracker</h4>
+            <p>Simple monthly-allowance tracker built for students.</p>
+          </div>
+          <div class="venture" onclick="alert('Club dashboard sneak peek soon!')">
+            <h4>School Club Dashboard</h4>
+            <p>All-in-one dashboard to manage club events, members & funds.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="testimonials" style="margin-top:16px">
+        <h3>Testimonials</h3>
+        <div class="testi">
+          <div class="testi-box">
+            <h5>Ms. Sharma, Class Coordinator</h5>
+            <p>“Arnav built our class site in two days flat — even my non-tech colleagues can update it without calling IT.”</p>
+          </div>
+          <div class="testi-box">
+            <h5>Raj, Tutor</h5>
+            <p>“Fast, friendly, and tidy code. Perfect for our small tuition center.”</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="pricing" style="margin-top:16px">
+        <h3>Pricing</h3>
+        <div class="pricing-wrap">
+          <div class="price-card">
+            <h4>Template</h4>
+            <div class="price">?250</div>
+            <p>Ready-made portfolio template<br>Downloadable HTML/CSS files<br>Hosting guidance included</p>
+          </div>
+          <div class="price-card">
+            <h4>Custom Site</h4>
+            <div class="price">?450</div>
+            <p>Unique design<br>Up to 5 pages<br>1-month free support</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="skills" style="margin-top:16px">
+        <h3>Skills</h3>
+        <div class="skills">
+          <div class="skill-row">
+            <span>HTML</span>
+            <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span>CSS</span>
+            <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <span>JavaScript</span>
+            <div class="skill-bar"><div class="skill-fill" data-width="65%"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="contact" style="margin-top:16px">
+        <h3>Contact</h3>
+        <p style="color:#6b7280">Email: as10016463@gmail.com</p>
+        <p style="color:#6b7280">WhatsApp: +91 80706 00080</p>
+      </section>
+    </main>
+
+    <div class="cta-box">
+      <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Start Your Project Now
+      </button>
+    </div>
+
+    <footer style="margin-top:30px">© 2025 Arnav — Portfolio</footer>
+  </main>
+
+  <script>
+    const fills = document.querySelectorAll('.skill-fill');
+    window.addEventListener('load', ()=>{
+      fills.forEach((el,i)=> setTimeout(()=> el.style.width = el.dataset.width, i*150));
+    });
+    function toggleMobileNav(){
+      const nav=document.getElementById('mobileNav');
+      nav.style.display= nav.style.display==='flex' ? 'none' : 'flex';
+    }
+  </script>
+</body>
+</html>
